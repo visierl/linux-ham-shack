@@ -1,0 +1,71 @@
+# ==============================================================================
+# Quisk SDR Amateur Radio Station - udev Hardware Rules
+# Grants non-root access (dialout group + uaccess) to SDRs & CAT/PTT interfaces
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. USB-to-Serial Adapters (CAT Control, CW Keying, PTT, & HL2 Companion Boards)
+# ------------------------------------------------------------------------------
+# FTDI FT232R / FT232RL / FT2232 / FT4232 (Includes persistent /dev/ttyUSB-ftdi symlink)
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE="0660", GROUP="dialout", TAG+="uaccess", SYMLINK+="ttyUSB-ftdi-%n"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6014", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", MODE="0660", GROUP="dialout", TAG+="uaccess"
+
+# Silicon Labs CP210x (Icom, Yaesu, Kenwood built-in USB CAT interfaces)
+SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea70", MODE="0660", GROUP="dialout", TAG+="uaccess"
+
+# WCH CH340 / CH341 (Common on QRP transceivers, HL2 IO/programmer boards, & clones)
+SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="5523", MODE="0660", GROUP="dialout", TAG+="uaccess"
+
+# Prolific PL2303
+SUBSYSTEM=="tty", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="2303", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="23a3", MODE="0660", GROUP="dialout", TAG+="uaccess"
+
+# ------------------------------------------------------------------------------
+# 2. Direct USB SDR Transceivers & Receivers Supported by Quisk
+# ------------------------------------------------------------------------------
+# SoftRock / Peaberry SDR / DG8SAQ USB Si570 Synth Control (libusb)
+SUBSYSTEM=="usb", ATTR{idVendor}=="16c0", ATTR{idProduct}=="05dc", MODE="0660", GROUP="dialout", TAG+="uaccess"
+
+# FUNcube Dongle & FUNcube Dongle Pro+ (HID / USB)
+SUBSYSTEM=="usb", ATTR{idVendor}=="04d8", ATTR{idProduct}=="fb56", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="04d8", ATTR{idProduct}=="fb31", MODE="0660", GROUP="dialout", TAG+="uaccess"
+KERNEL=="hidraw*", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="fb56", MODE="0660", GROUP="dialout", TAG+="uaccess"
+KERNEL=="hidraw*", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="fb31", MODE="0660", GROUP="dialout", TAG+="uaccess"
+
+# RTL-SDR (RTL2832U & common tuners via SoapySDR / librtlsdr)
+SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="2832", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="2838", MODE="0660", GROUP="dialout", TAG+="uaccess"
+
+# LimeSDR / LimeSDR Mini (MyriadRF / FTDI USB 3.0)
+SUBSYSTEM=="usb", ATTR{idVendor}=="1d50", ATTR{idProduct}=="6108", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="601f", MODE="0660", GROUP="dialout", TAG+="uaccess"
+
+# HackRF One / Jawbreaker / rad1o
+SUBSYSTEM=="usb", ATTR{idVendor}=="1d50", ATTR{idProduct}=="604b", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="1d50", ATTR{idProduct}=="6089", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="1d50", ATTR{idProduct}=="cc15", MODE="0660", GROUP="dialout", TAG+="uaccess"
+
+# SDRplay RSP1 / RSP1A / RSP2 / RSPdx / RSPduo (via SoapySDRPlay)
+SUBSYSTEM=="usb", ATTR{idVendor}=="1df7", ATTR{idProduct}=="2500", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="1df7", ATTR{idProduct}=="3000", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="1df7", ATTR{idProduct}=="3010", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="1df7", ATTR{idProduct}=="3020", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="1df7", ATTR{idProduct}=="3030", MODE="0660", GROUP="dialout", TAG+="uaccess"
+
+# Airspy R2 / Mini / HF+
+SUBSYSTEM=="usb", ATTR{idVendor}=="1d50", ATTR{idProduct}=="60a1", MODE="0660", GROUP="dialout", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="03eb", ATTR{idProduct}=="800c", MODE="0660", GROUP="dialout", TAG+="uaccess"
+
+# ------------------------------------------------------------------------------
+# 3. USB Audio & HID PTT Interfaces (CM108 / CM119 Soundcard PTT)
+# ------------------------------------------------------------------------------
+# C-Media CM108 / CM119 GPIO PTT (used by Direwolf, AllStar, & digital interfaces)
+KERNEL=="hidraw*", ATTRS{idVendor}=="0d8c", ATTRS{idProduct}=="000c", MODE="0660", GROUP="dialout", TAG+="uaccess"
+KERNEL=="hidraw*", ATTRS{idVendor}=="0d8c", ATTRS{idProduct}=="0012", MODE="0660", GROUP="dialout", TAG+="uaccess"
+KERNEL=="hidraw*", ATTRS{idVendor}=="0d8c", ATTRS{idProduct}=="013a", MODE="0660", GROUP="dialout", TAG+="uaccess"
+KERNEL=="hidraw*", ATTRS{idVendor}=="0d8c", ATTRS{idProduct}=="013c", MODE="0660", GROUP="dialout", TAG+="uaccess"

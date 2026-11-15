@@ -1,0 +1,1 @@
+Hermes-Lite 2 (Ethernet SDR + FT232RL Serial CW/PTT)
