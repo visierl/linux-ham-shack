@@ -1,0 +1,8 @@
+# Temporary packaging build directories
+/debian
+/rpmbuild
+/build
+*.deb
+*.buildinfo
+*.changes
+*build-deps*

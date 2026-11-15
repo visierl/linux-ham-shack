@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Carla Station Audio Rack
+Comment=Audio preprocessing rack for Quisk SDR Station
+Exec=sh -c '/usr/bin/pw-jack /usr/bin/carla "$HOME/.config/carla/station-rack.carxp"'
+Icon=carla
+Terminal=false
+Categories=AudioVideo;Audio;
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=2

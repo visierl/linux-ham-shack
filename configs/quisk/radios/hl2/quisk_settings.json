@@ -1,0 +1,47 @@
+{
+  "default_radio": "HL2",
+  "radios": {
+    "HL2": {
+      "hardware_file_name": "hermes/quisk_hardware.py",
+      "widgets_file_name": "hermes/quisk_widgets.py",
+      "hermes_ip": "",
+      "hermes_mac": "",
+      "hermes_code_version": -1,
+      "hermes_board_id": -1,
+      "sample_rate": 48000,
+      "playback_rate": 48000,
+      "mic_sample_rate": 48000,
+      "name_of_sound_play": "pulse:default",
+      "name_of_mic_play": "",
+      "microphone_name": "pulse:ham_mic_processed.monitor",
+      "digital_input_name": "pulse:ham_digital_tx.monitor",
+      "digital_output_name": "pulse:ham_radio_rx",
+      "sample_playback_name": "",
+      "key_method": "DTR",
+      "ptt_method": "RTS",
+      "key_port": "/dev/ttyUSB-ftdi-0",
+      "ptt_port": "/dev/ttyUSB-ftdi-0",
+      "cw_delay": 10,
+      "tx_level": {
+        "160": 100,
+        "80": 100,
+        "60": 100,
+        "40": 100,
+        "30": 100,
+        "20": 100,
+        "17": 100,
+        "15": 100,
+        "12": 100,
+        "10": 100
+      },
+      "hermes_band_tech": 1,
+      "hermes_enable_power_amp": 1,
+      "hermes_low_power": 0,
+      "use_fast_sound": 1,
+      "latency_millisecs": 60,
+      "data_poll_usec": 5000
+    }
+  },
+  "hamlib_port": 4532,
+  "hamlib_enable": 1
+}
