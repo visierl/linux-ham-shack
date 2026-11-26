@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Quisk SDR Station
+Comment=Software Defined Radio Transceiver
+Exec=sh -c '/usr/bin/quisk -c "$HOME/.config/quisk/quisk_conf.py"'
+Icon=quisk
+Terminal=false
+Categories=Network;HamRadio;AudioVideo;
